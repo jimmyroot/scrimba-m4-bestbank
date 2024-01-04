@@ -1,17 +1,118 @@
-/*
-COLOR PALETTE
+*, *::before, *::after {
+    box-sizing: inherit;
+    border: 1px solid lightgray
+}
 
-BLACK: #000000
-
-WHITE: #FFFFFF
-LIGHT: #FDF7F4
-
-ORANGE: #FFD18C
-DARK ORANGE: #FFA724
-*/
-
+:root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --accent-light: #FDF7F4;
+    --accent: #FFD18C;
+    --accent-dark: #FFA724;
+    --accent-light-test: #bbf6e2;
+}
 
 html, body {
     margin: 0;
     padding: 0;
 }
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, sans-serif;
+}
+
+header {
+    text-align: center;
+}
+
+button {
+    font-family: inherit;
+}
+
+h1 {
+    margin: 0 0 20px 0;
+}
+
+.div-container {
+    width: 1094px;
+    margin: 0 auto;
+}
+
+.logo {
+    width: 368px;
+    margin: 40px auto;
+}
+
+.div-nav-bar {
+    background-color: var(--accent-light-test);
+    width: 100%;
+}
+
+.ul-nav {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    font-size: 25px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.li-nav a {
+    text-decoration: none;
+    color: var(--black)
+}
+
+.section-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 40px;
+}
+
+.div-dashboards {
+    display: flex;
+    gap: 38px;
+}
+
+.section-accounts,
+.section-spending {
+    width: 529px;
+}
+
+.div-container-spending,
+.div-container-accounts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.div-container-accounts {
+    gap: 25px;
+}
+
+.div-account,
+.spending-bar {
+    padding: 20px;
+}
+
+.spending-bar {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+    width: 100%;
+}
+
+.div-account {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 115px
+}
+
+
+
