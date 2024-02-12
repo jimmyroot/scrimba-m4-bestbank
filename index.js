@@ -33,6 +33,7 @@ const getAccountsHtml = (accs, selectedAccountID) => {
 
 const getSpendingHtml = spendings => {
     if (spendings.length > 0) {
+        // widthsAsPercentages is, as you might suspect, an array of percentages corresponding to each 'spend'
         const widthsAsPercentages = getWidths(spendings)
         return spendings.map((expense, index) => {
             return `
@@ -47,14 +48,29 @@ const getSpendingHtml = spendings => {
     }
 }
 
+// getWidths takes in an array of spendings retrieved from from accounts.js, and calculates the percentage of
+// each 'spend' relative to the highest spend in the set (the highest spend will be treated as '100%')
+// So, simplified, if you passed in [50, 25, 12.5] as the spendings, it will return an array [100, 50, 25] (these
+// represent percentages
 const getWidths = spendings => {
+    // Create an array from the individual 'spends'
     const spends = spendings.map(spend => spend.spent)
+    // Get the highest 'spend'
     const highestSpend = Math.ceil(...spends)
+    // Create the array of percentages
     return spends.map(spend => {
         return `${getWidthAsPercentage(spend, highestSpend, 50)}%`
     })
 }
 
+// Returns a percentage. Takes three arguments:
+// — 'spend' is self explanatory
+// — 'maxSpend' is the maximum spend from the set, calculated as 'highestSpend' in getWidths()
+// — 'minWidth' allows us to constrain the result to say, a minimum of 50%. We need this because
+// otherwise given a range where there is a large spend of 1000 and a smallest spend of 10, 
+// the resulting 'spending bar' will be too small and the text will overflow. minWidth
+// means we can say 'I want the smallest bar to be no smaller than 50% or 30% or whatever'...and
+// it will behave itself! 
 const getWidthAsPercentage = (spend, maxSpend, minWidth) => {
     return Math.round((minWidth) + ((minWidth + (100 - (minWidth * 2))) * (spend / maxSpend)))
 }
